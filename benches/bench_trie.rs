@@ -55,7 +55,7 @@ fn bench_insert<D: Digest + 'static, T: Measurement>(c: &mut Criterion<T>, name:
     let type_name = type_name::<T>().split(":").take(1).collect::<Vec<_>>()[0];
     let mut group = c.benchmark_group(format!("trie/{}/{}", name, type_name));
 
-    for size in [1000, 10000, 100000].iter() {
+    for size in [1000, 10000].iter() {
         let bench_data = BenchData::<D>::new(*size);
 
         group.bench_with_input(BenchmarkId::new("insert", size), &bench_data, |b, data| {
@@ -102,8 +102,10 @@ fn wall_time_bench(c: &mut Criterion<WallTime>) {
 criterion_group!(
     name = benches_cycles;
     config = Criterion::default()
-        .sample_size(100)
-        .measurement_time(Duration::from_secs(10))
+        .measurement_time(Duration::from_secs(3))
+        .sample_size(1000)
+        .significance_level(0.01)
+        .warm_up_time(Duration::from_secs(3))
         .with_measurement(CyclesPerByte);
     targets = cycles_per_byte_bench
 );
@@ -111,8 +113,10 @@ criterion_group!(
 criterion_group!(
     name = benches_time;
     config = Criterion::default()
-        .sample_size(100)
-        .measurement_time(Duration::from_secs(10));
+        .measurement_time(Duration::from_secs(3))
+        .sample_size(1000)
+        .significance_level(0.01)
+        .warm_up_time(Duration::from_secs(3));
     targets = wall_time_bench
 );
 

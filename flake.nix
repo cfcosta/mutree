@@ -28,6 +28,13 @@
           cargo = rust;
         };
 
+        RUSTFLAGS =
+          {
+            "x86_64-linux" = "-C target-feature=+sse,+sse2,+sse3,+ssse3,+sse4.1,+sse4.2,+avx,+avx2";
+            "aarch64-darwin" = "-C target-feature=+neon";
+          }
+          .${system} or "";
+
         packages.default = rustPlatform.buildRustPackage {
           name = "mutree";
           src = ./.;
@@ -38,6 +45,9 @@
             "sha3"
           ];
           cargoLock.lockFile = ./Cargo.lock;
+          env = {
+            inherit RUSTFLAGS;
+          };
           useNextest = true;
         };
       in
@@ -45,6 +55,8 @@
         inherit packages;
 
         devShells.default = mkShell {
+          inherit RUSTFLAGS;
+
           name = "mutree";
 
           buildInputs = with pkgs; [
