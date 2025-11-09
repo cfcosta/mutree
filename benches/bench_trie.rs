@@ -1,8 +1,7 @@
 #![allow(unused)]
-use std::{any::type_name, time::Duration};
+use std::{any::type_name, hint::black_box, time::Duration};
 
 use criterion::{
-    black_box,
     criterion_group,
     criterion_main,
     measurement::{Measurement, WallTime},
@@ -29,18 +28,18 @@ impl<D: Digest + 'static> BenchData<D> {
 
         // Pre-populate the Forestry
         for _ in 0..size {
-            let key_len = rng.gen_range(1..100);
-            let value_len = rng.gen_range(100..10000);
-            let key: Vec<u8> = (0..key_len).map(|_| rng.gen()).collect();
-            let value: Vec<u8> = (0..value_len).map(|_| rng.gen()).collect();
+            let key_len = rng.random_range(1..100);
+            let value_len = rng.random_range(100..10000);
+            let key: Vec<u8> = (0..key_len).map(|_| rng.random()).collect();
+            let value: Vec<u8> = (0..value_len).map(|_| rng.random()).collect();
             trie.insert(&key, &*value).unwrap();
         }
 
         // Generate a single key-value pair for insertion
-        let key_len = rng.gen_range(1..100);
-        let value_len = rng.gen_range(100..10000);
-        let insert_key: Vec<u8> = (0..key_len).map(|_| rng.gen()).collect();
-        let insert_value: Vec<u8> = (0..value_len).map(|_| rng.gen()).collect();
+        let key_len = rng.random_range(1..100);
+        let value_len = rng.random_range(100..10000);
+        let insert_key: Vec<u8> = (0..key_len).map(|_| rng.random()).collect();
+        let insert_value: Vec<u8> = (0..value_len).map(|_| rng.random()).collect();
 
         Self {
             trie,
