@@ -2,7 +2,7 @@
 name = "mutree"
 description = "A throrougly tested Sparse Merkle Tree Data Structure"
 authors = ["Cainã Costa <me@cfcosta.com>"]
-version = "0.0.1"
+version = "0.1.0"
 edition = "2021"
 license = "MIT OR Apache-2.0"
 
@@ -12,7 +12,7 @@ hex = { version = "0.4.3", features = ["serde"] }
 paste = "1.0.15"
 proptest = "1.4.0"
 test-strategy = "0.4.0"
-thiserror = "1.0.61"
+thiserror = "2"
 
 # Hash Functions
 blake2 = { version = "0.10.6", optional = true }
@@ -22,7 +22,7 @@ blake3 = { version = "1.5.4", features = [
 ], optional = true }
 sha2 = { version = "0.10.8", optional = true }
 sha3 = { version = "0.10.8", optional = true }
-redb = "2.2.0"
+redb = "3.1.0"
 
 [features]
 default = []
@@ -32,10 +32,10 @@ sha2 = ["dep:sha2"]
 sha3 = ["dep:sha3"]
 
 [dev-dependencies]
-criterion = { version = "0.5.1", features = ["real_blackbox"] }
-criterion-cycles-per-byte = "0.6.1"
-rand = "0.8.5"
-rand_chacha = { version = "0.3.1", features = ["simd"] }
+criterion = { version = "0.7", features = ["real_blackbox"] }
+criterion-cycles-per-byte = "0.7"
+rand = "0.9.2"
+rand_chacha = "0.9"
 
 [profile.bench]
 lto = "fat"

@@ -1,6 +1,6 @@
-# Mutree
+# mutree
 
-Mutree is a Rust library implementing a variant of the [Merkle Patricia Forestry](https://github.com/aiken-lang/merkle-patricia-forestry) Data Structure, with a general focus of interacting with the Cardano Blockchain. It aims to be compatible whenever possible, but the project is going at some point to have its own implementation of On-chain Aiken code.
+mutree is a Rust library implementing a variant of the [Merkle Patricia Forestry](https://github.com/aiken-lang/merkle-patricia-forestry) Data Structure, with a general focus of interacting with the Cardano Blockchain. It aims to be compatible whenever possible, but the project is going at some point to have its own implementation of On-chain Aiken code.
 
 ## Table of Contents
 
@@ -95,11 +95,11 @@ A leaf step represents a terminal node and includes:
 
 ### Adding Dependencies
 
-To use Mutree in your Rust project, add the following to your `Cargo.toml`:
+To use mutree in your Rust project, add the following to your `Cargo.toml`:
 
 ```toml
 [dependencies]
-mutree = { git = "https://github.com/mugraph-payments/mutree.git" }
+mutree = "0.1"
 ```
 
 ### Basic Operations
