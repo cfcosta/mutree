@@ -194,7 +194,6 @@ mod tests {
     mod blake3_tests {
         use std::io::Cursor;
 
-        
         use crate::prelude::*;
 
         #[test]
